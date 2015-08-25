@@ -1,0 +1,23 @@
+LIBRARY LIBZUTILS
+EXPORTS
+	PerformCharsetConversion @1
+	FileReadBinInCharset @2
+	FileWriteBinInCharset @3
+	loadVectorOfStrings_ @4
+	SplitByString @5
+	SplitByChar @6
+	FindAll @7
+	RemplaceAll @8
+	GetByHttp @9
+	GetByHttpInCharset @10
+	GetDataFrom2Levels @11
+	GetChildValueByPos @12
+	GetChildValue @13
+	GetDataFromLevelN @14
+	FileReadBin @15
+	FileWriteBin @16
+	GetHttpFile @17
+	ZipReadinCharset @18
+    ZipRead @19
+	FileReadBinInCharsetU @20
+	FileReadBinU @21

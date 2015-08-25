@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{78EAE405-F53E-4BB7-BA2F-D23B07786592}</ProjectGuid>
+    <RootNamespace>libzutils</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\..\libs\libiconv\include;..\..\..\..\libs\libpcre\include;..\..\..\..\libs\libcurl\include;..\..\..\..\libs\libzip\include</AdditionalIncludeDirectories>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>zutils.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\..\..\libs\libiconv\lib;..\..\..\..\libs\libpcre\lib;..\..\..\..\libs\libcurl\lib;..\..\..\..\libs\libzip\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y ..\..\..\..\src\zutils.hpp ..\..\..\..\include
+xcopy /Y ..\..\..\..\src\zutils_ustr.hpp ..\..\..\..\include
+xcopy /Y ..\..\..\..\libs\libcurl\bin\libcurl.dll $(TargetDir)
+xcopy /Y ..\..\..\..\libs\libcurl\bin\zlib1.dll $(TargetDir)
+xcopy /Y ..\..\..\..\libs\libzip\bin\zip.dll $(TargetDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copia la DLL de iconv a proyecto que depende de zUtils</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\..\..\..\libs\libiconv\include;..\..\..\..\libs\libpcre\include;..\..\..\..\libs\libcurl\include;..\..\..\..\libs\libzip\include</AdditionalIncludeDirectories>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
+      <AdditionalOptions>/D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>zutils.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\..\..\libs\libiconv\lib;..\..\..\..\libs\libpcre\lib;..\..\..\..\libs\libcurl\lib;..\..\..\..\libs\libzip\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y ..\..\..\..\src\zutils.hpp ..\..\..\..\include
+xcopy /Y ..\..\..\..\src\zutils_ustr.hpp ..\..\..\..\include
+xcopy /Y ..\..\..\..\libs\libcurl\bin\libcurl.dll $(TargetDir)
+xcopy /Y ..\..\..\..\libs\libcurl\bin\zlib1.dll $(TargetDir)
+xcopy /Y ..\..\..\..\libs\libzip\bin\zip.dll $(TargetDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copia la DLL de iconv a proyecto que depende de zUtils</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="zutils.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\pugixml.cpp" />
+    <ClCompile Include="..\..\..\..\src\zutils_cnv.cpp" />
+    <ClCompile Include="..\..\..\..\src\zutils_conn.cpp" />
+    <ClCompile Include="..\..\..\..\src\zutils_io.cpp" />
+    <ClCompile Include="..\..\..\..\src\zutils_rgx.cpp" />
+    <ClCompile Include="..\..\..\..\src\zutils_str.cpp" />
+    <ClCompile Include="..\..\..\..\src\zutils_xml.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\src\pugiconfig.hpp" />
+    <ClInclude Include="..\..\..\..\src\pugixml.hpp" />
+    <ClInclude Include="..\..\..\..\src\zutils.hpp" />
+    <ClInclude Include="..\..\..\..\src\zutils_str_T.hpp" />
+    <ClInclude Include="..\..\..\..\src\zutils_ustr.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
